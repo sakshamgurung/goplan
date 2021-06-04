@@ -20,6 +20,7 @@
   "devDependencies": {
     "@cucumber/cucumber": "^7.2.1",
     "@cucumber/pretty-formatter": "^1.0.0-alpha.0",
+    "axios": "^0.21.1",
     "chromedriver": "^91.0.0",
     "mongodb": "^3.6.9",
     "nightwatch": "^1.6.4",

@@ -5,18 +5,18 @@ Feature: user login
     So that I can have access to my plan
 
 
-    Scenario: try to login with invalid email
+    Scenario: try to login with invalid credential
         Given the user has browsed to the login page
         When the user tries to login with email "joe@yahoo.com" and password "Password@123" using the webUI
         Then the invalid message "Email or Password is incorrect." should appear
 
-    Scenario: create valid user
-        Given the user has browsed to the signup page
-        When the user signup with following data using the webUI
+    Scenario: user login with valid credential
+        Given the user has been created with following credential
             | firstName | mo            |
             | lastName  | doe           |
             | email     | mo3@gmail.com |
             | password  | Password@123  |
-        Then the user sholud be in login page
-        And the message "SUCCESS" should appear
+        And the user has browsed to the login page
+        When the user tries to login with email "mo3@gmail.com" and password "Password@123" using the webUI
+        Then the user should be in dashboard page
 

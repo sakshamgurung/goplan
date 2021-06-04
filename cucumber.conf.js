@@ -26,9 +26,9 @@ BeforeAll(async function () {
 // Before(function () {});
 
 // cleanup after every scenario
-After(function () {
-  cleanUpDB()
-})
+// After(function () {
+//   cleanUpDB()
+// })
 
 // after the whole test run
 AfterAll(async function () {
