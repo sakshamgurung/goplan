@@ -3,6 +3,7 @@ const axios = require('axios')
 const { user } = require('../../globals/loggedUser')
 
 const apiBaseUrl = `http://localhost:5000/api`
+
 const endPoints = {
   USER: apiBaseUrl + '/users',
 }
@@ -16,9 +17,7 @@ async function createUser(userData) {
     const res = await axios.post(endPoints.USER, userForm)
     status = true
   } catch (err) {
-    if (err.response.data.error == 'A user already exists with given email') {
-      status = true
-    }
+    throw err
   }
   if (status) {
     user.email = userData.email
@@ -26,4 +25,4 @@ async function createUser(userData) {
   return status
 }
 
-module.exports = { createUser }
+module.exports = { createUser, endPoints }
