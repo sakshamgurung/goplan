@@ -1,4 +1,5 @@
 module.exports = {
+  page_objects_paths: 'tests/acceptance/pageObjects/',
   test_settings: {
     default: {
       launch_url: 'http://localhost:3000',
@@ -16,4 +17,4 @@ module.exports = {
       },
     },
   },
-};
+}
