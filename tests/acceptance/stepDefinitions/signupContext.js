@@ -34,3 +34,15 @@ Then('the message {string} should appear', async function (successMsg) {
     `Expected "${expectedMsg}" but got "${actualMsg}"`
   )
 })
+
+Then('the following message should appear', async function (dataTable) {
+  const messageData = dataTable.rowsHash()
+  const expectedErrorMsg = messageData.message
+  const actualErrorMsg = await signupPage.getErrorMessage()
+  console.log(actualErrorMsg)
+  assert.strictEqual(
+    actualErrorMsg,
+    expectedErrorMsg,
+    `Expected ${expectedErrorMsg} but got ${actualErrorMsg}`
+  )
+})

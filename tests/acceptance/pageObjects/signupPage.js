@@ -30,6 +30,16 @@ module.exports = {
       await this.setPassword(password)
       return this.click('@signupButton')
     },
+    getErrorMessage: async function () {
+      let errorMsg
+
+      await this.waitForElementVisible('@errorMessage').getText(
+        '@errorMessage',
+        (res) => (errorMsg = res.value)
+      )
+
+      return errorMsg
+    },
   },
   elements: {
     firstNameInput: "input[type='firstName']",
@@ -37,5 +47,6 @@ module.exports = {
     emailInput: "input[type='email",
     passwordInput: "input[type='password']",
     signupButton: 'button.button',
+    errorMessage: '.negative.message',
   },
 }
