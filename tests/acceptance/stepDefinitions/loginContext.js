@@ -20,6 +20,21 @@ Given(
   }
 )
 
+Given(
+  'the user has logged with email {string} and password {string}',
+  async function (email, password) {
+    await loginPage.navigate()
+    await loginPage.isLoginPage()
+    await loginPage.login(email, password)
+    return dashboardPage
+      .isDashboardPage()
+      .assert.containsText(
+        dashboardPage.elements.dashboardPageNavBarItem,
+        'GoPlan'
+      )
+  }
+)
+
 When(
   'the user tries to login with email {string} and password {string} using the webUI',
   function (email, password) {

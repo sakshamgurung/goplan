@@ -12,7 +12,7 @@ const {
   closeSession,
 } = require('nightwatch-api')
 
-const { cleanUpDB, cleanUpTestUser } = require('./tests/lib/index')
+const { cleanUpDB, deleteUser } = require('./tests/lib')
 
 setDefaultTimeout(60000)
 
@@ -27,7 +27,7 @@ BeforeAll(async function () {
 
 // cleanup after every scenario
 After(async function () {
-  await cleanUpTestUser()
+  await deleteUser()
 })
 
 // after the whole test run

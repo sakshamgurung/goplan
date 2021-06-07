@@ -25,4 +25,13 @@ async function createUser(userData) {
   return status
 }
 
-module.exports = { createUser, endPoints }
+async function deleteUser() {
+  try {
+    const res = await axios.delete(endPoints.USER, { data: user })
+    console.log('After deleteUser:', res.data.message)
+  } catch (err) {
+    console.log('err:', err.response.data)
+  }
+}
+
+module.exports = { createUser, deleteUser, endPoints }
