@@ -1,4 +1,5 @@
 language: node_js
+sudo: true
 node_js:
   - '12.22.1'
 services:
@@ -7,6 +8,11 @@ services:
 branches:
   only:
     - master
+before_install:
+  # - apt update
+  # - apt install wget
+  # - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  # - dpkg -i google-chrome-stable_current_amd64.deb
 before_script:
   - cp client/.env.example client/.env
   - cp server/.env.example server/.env
