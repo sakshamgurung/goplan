@@ -2,10 +2,16 @@ language: node_js
 node_js:
   - '12.22.1'
 services: mongodb
-
+# branches:
+#   only:
+#     - cicd
 before_install:
 before_script:
   - cp client/.env.example client/.env
   - cp server/.env.example server/.env
   - npm run setup
-  - npm run serve
+  - npm run serve -d
+  - until curl -s http://localhost:3000; do sleep 5; done
+  - until curl -s http://localhost:5000; do sleep 5; done
+script:
+  - npm run testUI
