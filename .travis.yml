@@ -1,11 +1,12 @@
 language: node_js
 node_js:
   - '12.22.1'
-services: mongodb
-# branches:
-#   only:
-#     - cicd
-before_install:
+services:
+  - mongodb
+  - xvfb
+branches:
+  only:
+    - master
 before_script:
   - cp client/.env.example client/.env
   - cp server/.env.example server/.env
