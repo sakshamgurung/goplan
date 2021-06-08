@@ -3,8 +3,9 @@ node_js:
   - '12.22.1'
 services: mongodb
 
-# before_install:
+before_install:
 before_script:
-  - pwd
-  # - npm run setup
-  # - npm run serve
+  - cp client/.env.example client/.env
+  - cp server/.env.example server/.env
+  - npm run setup
+  - npm run serve
