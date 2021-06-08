@@ -14,7 +14,7 @@ Feature: user dashboard
 
     Scenario: create event with valid information
         Given the user has opened new event sidebar
-        When the user creates an event with following information using webUI
+        When the user creates an event with following information using the webUI
             | eventName      | Mock test                         |
             | description    | Mock test for network programming |
             | location       | pokhara                           |
@@ -22,5 +22,5 @@ Feature: user dashboard
             | startTime      | 08:00                             |
             | endTime        | 10:00                             |
             | recurrenceType | Every Day                         |
-        Then the event should be listed under date "09-06-2020" in webUI
+        Then the event should be listed under date "09-06-2020" with event title "Mock test" in the webUI
 

@@ -4,13 +4,14 @@ const assert = require('assert')
 
 const dashboardPage = client.page.dashboardPage()
 const newEventSidebarPage = client.page.newEventSidebarPage()
+const eventListSidebarPage = client.page.eventListSidebarPage()
 
 Given('the user has opened new event sidebar', async function () {
   return dashboardPage.openNewEventSidebar()
 })
 
 When(
-  'the user creates an event with following information using webUI',
+  'the user creates an event with following information using the webUI',
   async function (dataTable) {
     const eventData = dataTable.rowsHash()
     const {
@@ -36,9 +37,19 @@ When(
 )
 
 Then(
-  'the event should be listed under date {string} in webUI',
-  function (date) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending'
+  'the event should be listed under date {string} with event title {string} in the webUI',
+  async function (date, eventTitle) {
+    let day = date.substring(3, 5)
+    if (day.substring(0, 1) == 0) {
+      day = day[1]
+    }
+
+    await dashboardPage.selectDay(day)
+    return eventListSidebarPage
+      .isEventListSidebarPage()
+      .assert.containsText(
+        eventListSidebarPage.elements.topEventTitle,
+        eventTitle
+      )
   }
 )

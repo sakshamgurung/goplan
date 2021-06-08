@@ -42,14 +42,17 @@ When(
   }
 )
 
-Then('the invalid message {string} should appear', async function (invalidMsg) {
-  const actualMsg = await loginPage.getErrorMessage()
-  assert.strictEqual(
-    actualMsg,
-    invalidMsg,
-    `Expected "${invalidMsg}" but got "${actualMsg}"`
-  )
-})
+Then(
+  'the invalid message {string} should be displayed in the webUI',
+  async function (invalidMsg) {
+    const actualMsg = await loginPage.getErrorMessage()
+    assert.strictEqual(
+      actualMsg,
+      invalidMsg,
+      `Expected "${invalidMsg}" but got "${actualMsg}"`
+    )
+  }
+)
 
 Then('the user should be in dashboard page', function () {
   return dashboardPage.isDashboardPage()

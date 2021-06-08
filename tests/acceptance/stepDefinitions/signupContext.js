@@ -22,27 +22,33 @@ Then('the user should be in login page', async function () {
   return loginPage.isLoginPage()
 })
 
-Then('the message {string} should appear', async function (successMsg) {
-  let expectedMsg = successMsg.toLowerCase()
+Then(
+  'the message {string} should be displayed in the webUI',
+  async function (successMsg) {
+    let expectedMsg = successMsg.toLowerCase()
 
-  let actualMsg = await loginPage.getSignupMessage()
-  actualMsg = actualMsg.toLowerCase()
+    let actualMsg = await loginPage.getSignupMessage()
+    actualMsg = actualMsg.toLowerCase()
 
-  assert.strictEqual(
-    actualMsg,
-    expectedMsg,
-    `Expected "${expectedMsg}" but got "${actualMsg}"`
-  )
-})
+    assert.strictEqual(
+      actualMsg,
+      expectedMsg,
+      `Expected "${expectedMsg}" but got "${actualMsg}"`
+    )
+  }
+)
 
-Then('the following message should appear', async function (dataTable) {
-  const messageData = dataTable.rowsHash()
-  const expectedErrorMsg = messageData.message
-  const actualErrorMsg = await signupPage.getErrorMessage()
-  console.log(actualErrorMsg)
-  assert.strictEqual(
-    actualErrorMsg,
-    expectedErrorMsg,
-    `Expected ${expectedErrorMsg} but got ${actualErrorMsg}`
-  )
-})
+Then(
+  'the following message should be displayed in the webUI',
+  async function (dataTable) {
+    const messageData = dataTable.rowsHash()
+    const expectedErrorMsg = messageData.message
+    const actualErrorMsg = await signupPage.getErrorMessage()
+    console.log(actualErrorMsg)
+    assert.strictEqual(
+      actualErrorMsg,
+      expectedErrorMsg,
+      `Expected ${expectedErrorMsg} but got ${actualErrorMsg}`
+    )
+  }
+)

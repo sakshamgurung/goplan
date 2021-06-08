@@ -8,7 +8,7 @@ Feature: user login
     Scenario: try to login with invalid credential
         Given the user has browsed to the login page
         When the user tries to login with email "joe@yahoo.com" and password "Password@123" using the webUI
-        Then the invalid message "Email or Password is incorrect." should appear
+        Then the invalid message "Email or Password is incorrect." should be displayed in the webUI
 
     Scenario: user login with valid credential
         Given the user has been created with following credential
