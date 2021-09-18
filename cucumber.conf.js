@@ -12,25 +12,28 @@ const {
   closeSession,
 } = require('nightwatch-api')
 
-const { cleanUpDB } = require('./tests/lib')
+const { cleanUpDB, deleteUser } = require('./tests/lib')
 
 setDefaultTimeout(60000)
 
 // before the test run
 BeforeAll(async function () {
   await startWebDriver({ env: 'chrome' })
-  await createSession()
 })
 
 // before every scenario
-Before(function () {})
+Before(async function () {
+  await createSession()
+})
 
 // cleanup after every scenario
-After(function () {})
+After(async function () {
+  await closeSession()
+  await deleteUser()
+  // cleanUpDB()
+})
 
 // after the whole test run
 AfterAll(async function () {
-  await closeSession()
   await stopWebDriver()
-  cleanUpDB()
 })
